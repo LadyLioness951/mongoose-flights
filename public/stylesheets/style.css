@@ -1,8 +1,42 @@
+* {
+  box-sizing: border-box;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+}
+
 body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  background-image: url(https://i.imgur.com/SoWmK9qh.jpg);
+  background-size: cover;
+  background-position: center;
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px; 
 }
 
 a {
-  color: #00B7FF;
+  color: #001eff;
+}
+
+button {
+  color: rgb(8, 238, 242);
+  background: mediumslateblue;
+}
+
+button:hover {
+  background: maroon;
+}
+
+#add-destination-form {
+  display: inline-flex;
+  flex-direction: column;
+  justify-items: center;  
+  text-align: center;
+}
+
+#list, #add-ticket-form {
+  display: inline-flex;
+  flex-direction: column;
 }

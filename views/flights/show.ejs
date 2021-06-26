@@ -14,20 +14,33 @@
     <div><%= flight.departs %></div>
 </section>
 
-<form id="add-ticket-to-flight" action="/flights/<%= flight._id %>/tickets" method="POST"></form>
-  <select name="ticketId">
-      <%- tickets.map(t =>
-        `<option value="${t._id}">${t.name}</option>`
-      ).join('') %>
-  </select>  
-  <button type="submit">Add to Flight</button>  
-
+<table>
+    <thead>
+      <tr>
+          <th>Seat:</th>
+          <th>Price:</th>
+      </tr>
+  </thead>
+    <tbody>
+      <% tickets.forEach(function(t) { %>
+        <tr>
+          <td><%= t.seat %></td>
+          <td><%= t.price %></td>
+          <td><form action="/tickets/<%= t._id%>?_method=DELETE" method="POST" >
+            <button type="submit">Delete Ticket</button>
+          </form></td>
+        </tr>
+        <% }); %>
+    </tbody>
+  </table>
+  <form action="/flights/<%= flight._id %>/tickets/new" method="GET">
+    <button type="submit">Add Ticket</button>
+  </form>
+  <br>
+  
 <br><br>
 <h2>Destinations</h2>
 <form id="add-destination-form" method="POST" action="/flights/<%= flight._id %>/destinations">
-    <label>Arrival Date & Time:</label>
-    <input type="datetime-local" name="arrival">
-    <br>
     <label>Airport: </label>
     <select name="airport">
         <option value="AUS">AUS</option>
@@ -36,6 +49,9 @@
         <option value="LAX">LAX</option>
         <option value="SAN">SAN</option>
     </select>
+    <br>
+    <label>Arrival Date & Time:</label>
+    <input type="datetime-local" name="arrival">
     <br><br>
     <button type="submit">Add Destinations</button>
 </form>
